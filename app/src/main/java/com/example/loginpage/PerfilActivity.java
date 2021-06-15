@@ -98,7 +98,7 @@ public class PerfilActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Insignia>> call, Response<List<Insignia>> response) {
                 insigniaList = response.body();
-                mAdapter = new InsigniasAdapter(insigniaList);
+                mAdapter = new InsigniasAdapter(insigniaList,getApplicationContext());
                 recyclerView.setAdapter(mAdapter);
             }
 

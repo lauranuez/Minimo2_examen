@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.loginpage.models.Insignia;
 
 import java.util.ArrayList;
@@ -17,15 +18,18 @@ import java.util.List;
 
 public class InsigniasAdapter extends RecyclerView.Adapter<InsigniasAdapter.MyViewHolder> {
     private List<Insignia> values;
+    private Context context;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView name;
         public View layout;
+        ImageView imageView;
 
         public MyViewHolder(View v) {
             super(v);
             layout = v;
             name = v.findViewById(R.id.name);
+            imageView = (ImageView)itemView.findViewById(R.id.insigniasPicture);
         }
     }
 
@@ -34,8 +38,9 @@ public class InsigniasAdapter extends RecyclerView.Adapter<InsigniasAdapter.MyVi
         notifyItemInserted(position);
     }
 
-    public InsigniasAdapter(List<Insignia> myDataset) {
+    public InsigniasAdapter(List<Insignia> myDataset, Context context) {
         values = myDataset;
+        this.context = context;
     }
 
     @NonNull
@@ -51,6 +56,7 @@ public class InsigniasAdapter extends RecyclerView.Adapter<InsigniasAdapter.MyVi
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final Insignia insignia = values.get(position);
+        Glide.with(this.context).load(values.get(position).getUrl()).into(holder.imageView);
         holder.name.setText(insignia.getName());
     }
 

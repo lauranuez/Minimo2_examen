@@ -13,15 +13,15 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface Minimo2API {
-    String ENDPOINT = "https://10.0.2.2:8080/myapp/Minimo2/";
+    String ENDPOINT = "http://10.0.2.2:8080/myapp/Minimo2/";
 
 
-    @GET("/user/{id}")
+    @GET("user/{id}")
     Call<Usuario> getInfoUser(@Path("id") String id);
 
-    @GET("/userInsignias/{id}")
+    @GET("userInsignias/{id}")
     Call<List<Insignia>> getInsigniasByUser(@Path("id") String id);
 
-    @GET("/insignias")
+    @GET("insignias")
     Call<List<Insignia>> getInsignias();
 }

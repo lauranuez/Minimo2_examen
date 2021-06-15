@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/followerPicture"
+        android:id="@+id/insigniasPicture"
         android:layout_width="96dp"
         android:layout_height="96dp"
         app:layout_constraintBottom_toBottomOf="parent"

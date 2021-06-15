@@ -16,6 +16,7 @@ import com.example.loginpage.models.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -33,8 +34,6 @@ public class InsigniasActivity extends AppCompatActivity {
     private List<Insignia> insigniaList = new ArrayList<>();
     private String userName;
     private Usuario user;
-    ImageView userImage;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,13 +68,14 @@ public class InsigniasActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Insignia>> call, Response<List<Insignia>> response) {
                 insigniaList = response.body();
-                mAdapter = new InsigniasAdapter(insigniaList);
+                mAdapter = new InsigniasAdapter(insigniaList, getApplicationContext());
+                Log.i("Insignias",insigniaList.toString());
                 recyclerView.setAdapter(mAdapter);
             }
 
             @Override
             public void onFailure(Call<List<Insignia>> call, Throwable t) {
-                Log.i("ListFollowers", "Failure " + t.getMessage());
+                Log.i("ListFollowers", "Failure " + t.getMessage(),t);
             }
         });
 
